@@ -1,0 +1,31 @@
+{
+    "name": "Asel",
+    "rootNamespace": "NeGodAndre",
+    "references": [
+        "VContainer",
+        "UniTask",
+        "UniTask.DOTween",
+        "UniTask.Addressables",
+        "UniTask.TextMeshPro",
+        "Unity.InputSystem",
+        "VitalRouter"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "DOTween.dll",
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.2",
+            "define": "ASEL_INPUT_SYSTEM"
+        }
+    ],
+    "noEngineReferences": false
+}

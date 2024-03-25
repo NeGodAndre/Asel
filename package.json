@@ -1,0 +1,16 @@
+{
+  "name": "com.negodandre.asel",
+  "version": "0.3.0",
+  "displayName": "Asel",
+  "unity": "2021.3",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "jp.hadashikick.vcontainer": "1.15.1",
+    "jp.hadashikick.vitalrouter": "0.9.0",
+    "com.cysharp.unitask": "2.5.3"
+  },
+  "keywords": [],
+  "author": {
+    "name": "NeGodAndre"
+  }
+}
