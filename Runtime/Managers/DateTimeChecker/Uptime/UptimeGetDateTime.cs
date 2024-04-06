@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 
 using System;
+using NeGodAndre.Managers.Logger;
 using NeGodAndre.Utils.Serializer;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace NeGodAndre.Managers.DateTimeChecker.Uptime {
 			try {
 				_dateTimeUptime = JsonSerializer.Deserialize<DateTimeUptimeData>(rawData);
 			} catch ( Exception e ) {
-				Debug.LogException(e);
+				LoggerManager.LogException(e);
 				_dateTimeUptime = new DateTimeUptimeData();
 			}
 		}

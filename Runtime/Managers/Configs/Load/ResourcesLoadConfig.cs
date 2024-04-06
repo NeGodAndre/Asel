@@ -3,6 +3,7 @@
 
 using System.IO;
 using Cysharp.Threading.Tasks;
+using NeGodAndre.Managers.Logger;
 using NeGodAndre.Utils;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace NeGodAndre.Managers.Configs.Load {
 				var textAsset = await ResourcesUtils.LoadAsync<TextAsset>(Path.Combine(_folder, name));
 				return textAsset ? textAsset.text : string.Empty;
 			} catch {
-				Debug.LogErrorFormat("ResourcesLoadConfig: Config {0} doesn't find!!!", name);
+				LoggerManager.LogError("ResourcesLoadConfig: Config {0} doesn't find!!!", name);
 				return string.Empty;
 			}
 		}

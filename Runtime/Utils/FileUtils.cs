@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Text;
 using Cysharp.Threading.Tasks;
-using UnityEngine;
+using NeGodAndre.Managers.Logger;
 
 namespace NeGodAndre.Utils {
 	public static class FileUtils {
@@ -76,7 +76,7 @@ namespace NeGodAndre.Utils {
 					}
 					File.Create(path).Dispose();
 				} catch ( Exception e ) {
-					Debug.LogException(e);
+					LoggerManager.LogException(e);
 				}
 			}
 			File.WriteAllText(path, data, Encoding.UTF8);
@@ -91,7 +91,7 @@ namespace NeGodAndre.Utils {
 					}
 					File.Create(path).Dispose();
 				} catch ( Exception e ) {
-					Debug.LogException(e);
+					LoggerManager.LogException(e);
 				}
 			}
 			File.WriteAllBytesAsync(path, data);

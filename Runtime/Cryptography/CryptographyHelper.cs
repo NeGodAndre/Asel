@@ -2,7 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 
 using System;
-using UnityEngine;
+using NeGodAndre.Managers.Logger;
 
 namespace NeGodAndre.Cryptography {
 	public static class CryptographyHelper {
@@ -24,7 +24,7 @@ namespace NeGodAndre.Cryptography {
 					return RSA.Encrypt(data, rsa);
 				}
 			} catch ( Exception e ) {
-				Debug.LogException(e);
+				LoggerManager.LogException(e);
 			}
 			return data;
 		}
@@ -47,7 +47,7 @@ namespace NeGodAndre.Cryptography {
 					return RSA.Decrypt(data, rsa);
 				}
 			} catch ( Exception e ) {
-				Debug.LogException(e);
+				LoggerManager.LogException(e);
 			}
 			return data;
 		}

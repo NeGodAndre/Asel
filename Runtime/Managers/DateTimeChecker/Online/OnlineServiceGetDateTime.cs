@@ -3,9 +3,9 @@
 
 using System;
 using Cysharp.Threading.Tasks;
+using NeGodAndre.Managers.Logger;
 using NeGodAndre.Utils;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 
 namespace NeGodAndre.Managers.DateTimeChecker.Online {
 	internal class OnlineServiceGetDateTime : BaseGetDateTime {
@@ -27,7 +27,8 @@ namespace NeGodAndre.Managers.DateTimeChecker.Online {
 		
 		private async UniTaskVoid Download() {
 			if ( string.IsNullOrEmpty(_config.URL) ) {
-				Debug.LogError("OnlineServiceGetDateTime: URL is empty!!!");
+				
+				LoggerManager.LogError("OnlineServiceGetDateTime: URL is empty!!!");
 				OnFailTimeUpdate?.Invoke();
 				return;
 			}
@@ -35,20 +36,20 @@ namespace NeGodAndre.Managers.DateTimeChecker.Online {
 				var data = await DownloadUtils.DownloadText(_config.URL, COUNT_ATTEMPT);
 				DownloadComplete(data);
 			} catch ( Exception exception ) {
-				Debug.LogErrorFormat("OnlineServiceGetDateTime: Download for {0} fall with error: {1}", _config.URL, exception);
+				LoggerManager.LogError("OnlineServiceGetDateTime: Download for {0} fall with error: {1}", _config.URL, exception);
 				OnFailTimeUpdate?.Invoke();
 			}
 		}
 
 		private void DownloadComplete(string result) {
 			if ( string.IsNullOrEmpty(result) ) {
-				Debug.LogErrorFormat("OnlineServiceGetDateTime: For {0} Result online time is null!", _config.URL);
+				LoggerManager.LogError("OnlineServiceGetDateTime: For {0} Result online time is null!", _config.URL);
 				OnFailTimeUpdate?.Invoke();
 				return;
 			}
 			var json = JObject.Parse(result);
 			if ( !string.IsNullOrEmpty((string)json[_config.FieldError]) ) {
-				Debug.LogErrorFormat("OnlineServiceGetDateTime: For {0} Result online have error:{1}!!!", _config.URL, (string)json[_config.FieldError]);
+				LoggerManager.LogError("OnlineServiceGetDateTime: For {0} Result online have error:{1}!!!", _config.URL, (string)json[_config.FieldError]);
 				OnFailTimeUpdate?.Invoke();
 				return;
 			}
@@ -56,7 +57,7 @@ namespace NeGodAndre.Managers.DateTimeChecker.Online {
 			try {
 				dateTime = (DateTime)json[_config.FieldDateTime];
 			} catch {
-				Debug.LogErrorFormat("OnlineServiceGetDateTime: URL: {0}. Format Exception Parse Date. String data: {1} and string for parse {2}!!!", 
+				LoggerManager.LogError("OnlineServiceGetDateTime: URL: {0}. Format Exception Parse Date. String data: {1} and string for parse {2}!!!", 
 					_config.URL, result, _config.FieldDateTime);
 				OnFailTimeUpdate?.Invoke();
 				return;

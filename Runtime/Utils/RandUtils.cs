@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 
 using System.Collections.Generic;
+using NeGodAndre.Managers.Logger;
 using UnityEngine;
 
 namespace NeGodAndre.Utils {
@@ -13,7 +14,7 @@ namespace NeGodAndre.Utils {
 		/// <param name="max"></param>
 		public static int Range(int min, int max) {
 			if ( max < min ) {
-				Debug.LogError("RandUtils: min more max!!!");
+				LoggerManager.LogError("RandUtils: min more max!!!");
 				return min;
 			}
 			return Random.Range(min, max);
@@ -26,7 +27,7 @@ namespace NeGodAndre.Utils {
 		/// <param name="max"></param>
 		public static float Range(float min, float max) {
 			if ( max < min ) {
-				Debug.LogError("RandUtils: min more max!!!");
+				LoggerManager.LogError("RandUtils: min more max!!!");
 				return min;
 			}
 			return Random.Range(min, max);
@@ -61,7 +62,7 @@ namespace NeGodAndre.Utils {
 		/// <param name="values"></param>
 		public static T Range<T>(List<T> values) {
 			if ( (values == null) || (values.Count == 0) ) {
-				Debug.LogError("List is null or empty!!!");
+				LoggerManager.LogError("List is null or empty!!!");
 				return default;
 			}
 			if ( values.Count == 1 ) {
@@ -76,7 +77,7 @@ namespace NeGodAndre.Utils {
 		/// <param name="values"></param>
 		public static T Range<T>(T[] values){
 			if ( (values == null) || (values.Length == 0) ){
-				Debug.LogError("List is null or empty!!!");
+				LoggerManager.LogError("List is null or empty!!!");
 				return default;
 			}
 			if ( values.Length == 1 ){

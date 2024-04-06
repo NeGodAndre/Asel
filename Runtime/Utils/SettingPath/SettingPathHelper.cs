@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.IO;
+using NeGodAndre.Managers.Logger;
 using UnityEngine;
 
 namespace NeGodAndre.Utils.SettingPath {
@@ -34,7 +35,7 @@ namespace NeGodAndre.Utils.SettingPath {
 			var settingPath = settingPaths.Find((value) => value.Platform == platform);
 			if ( (Application.platform == RuntimePlatform.WebGLPlayer) && (settingPath?.PathType != PathType.PersistentData) ) {
 				settingPath = null;
-				Debug.LogErrorFormat("WebGl support only PersistentData!!!");
+				LoggerManager.LogError("WebGl support only PersistentData!!!");
 			}
 			return settingPath;
 		}

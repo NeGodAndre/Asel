@@ -4,7 +4,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using NeGodAndre.Managers.Configs.Load;
-using UnityEngine;
+using NeGodAndre.Managers.Logger;
 using VContainer.Unity;
 using VitalRouter;
 
@@ -34,7 +34,7 @@ namespace NeGodAndre.Managers.Configs {
 			if ( _stringConfigs.TryGetValue(name, out var config) ) {
 				return config;
 			}
-			Debug.LogErrorFormat("ConfigsManager: Config type {0} isn't registered!!!", name);
+			LoggerManager.LogError("ConfigsManager: Config type {0} isn't registered!!!", name);
 			return string.Empty;
 		}
 
@@ -48,7 +48,7 @@ namespace NeGodAndre.Managers.Configs {
 
 		private async UniTask AsyncLoadConfigs() {
 			if ( (_loadConfigs == null) || (_loadConfigs.Count == 0) ) {
-				Debug.LogError("ConfigsManager: Manager doesn't have loaders!!!");
+				LoggerManager.LogError("ConfigsManager: Manager doesn't have loaders!!!");
 				return;
 			}
 			foreach ( var key in _keys ) {

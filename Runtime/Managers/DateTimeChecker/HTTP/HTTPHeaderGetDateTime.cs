@@ -4,8 +4,8 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using NeGodAndre.Managers.Logger;
 using NeGodAndre.Utils;
-using UnityEngine;
 
 namespace NeGodAndre.Managers.DateTimeChecker.HTTP {
 	internal class HTTPHeaderGetDateTime : BaseGetDateTime {
@@ -32,24 +32,24 @@ namespace NeGodAndre.Managers.DateTimeChecker.HTTP {
 			}
 			catch (Exception error)
 			{
-				Debug.LogError("HTTPHeaderGetDateTime: " + error.Message);
+				LoggerManager.LogError("HTTPHeaderGetDateTime: " + error.Message);
 				OnFailTimeUpdate?.Invoke();
 			}
 		}
 
 		private void DownloadComplete(Dictionary<string, string> result) {
 			if ( (result == null) || (result.Count == 0) ) { 
-				Debug.LogError("HTTPHeaderGetDateTime: Result is null!");
+				LoggerManager.LogError("HTTPHeaderGetDateTime: Result is null!");
 				OnFailTimeUpdate?.Invoke();
 				return;
 			}
 			if ( !result.TryGetValue("Date", out var header) ) {
-				Debug.LogError("HTTPHeaderGetDateTime: Result is null!");
+				LoggerManager.LogError("HTTPHeaderGetDateTime: Result is null!");
 				OnFailTimeUpdate?.Invoke();
 				return;
 			}
 			if ( !DateTime.TryParse(header, out var dateTime) ) {
-				Debug.LogErrorFormat("HTTPHeaderGetDateTime: Error parse date \"{0}\"!!!", result);
+				LoggerManager.LogError("HTTPHeaderGetDateTime: Error parse date \"{0}\"!!!", result);
 				OnFailTimeUpdate?.Invoke();
 				return;
 			}

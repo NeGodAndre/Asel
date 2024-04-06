@@ -4,6 +4,7 @@
 #if ASEL_INPUT_SYSTEM
 using System;
 using System.Collections.Generic;
+using NeGodAndre.Managers.Logger;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
@@ -179,7 +180,7 @@ namespace NeGodAndre.Managers.Input {
 			} else if ( obj.valueType == typeof(float) ) {
 				ButtonTrigger(obj);
 			} else {
-				Debug.LogErrorFormat("InputManager: {0} is unknow type!!!", obj.valueType);
+				LoggerManager.LogError("InputManager: {0} is unknow type!!!", obj.valueType);
 			}
 		}
 

@@ -2,6 +2,7 @@
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 
 #if ASEL_DOTWEEN_SUPPORT
+using NeGodAndre.Managers.Logger;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -52,7 +53,7 @@ namespace DG.Tweening {
 			}
 			foreach ( var seq in seqs ) {
 				if ( !string.IsNullOrEmpty(seq.stringId) && seq.stringId.Contains(arg0.name) ) {
-					Debug.LogWarningFormat("Sequence {0} don't killing!!! It's murdered!!!", seq.stringId);
+					LoggerManager.LogWarning("Sequence {0} don't killing!!! It's murdered!!!", seq.stringId);
 					seq.Kill();
 				}
 			}

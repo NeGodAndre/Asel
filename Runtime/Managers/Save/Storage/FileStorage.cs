@@ -5,10 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Cysharp.Threading.Tasks;
+using NeGodAndre.Managers.Logger;
 using NeGodAndre.Managers.Save.Interfaces;
 using NeGodAndre.Utils;
 using NeGodAndre.Utils.SettingPath;
-using UnityEngine;
 
 namespace NeGodAndre.Managers.Save.Storage {
 	public class FileStorage : IStorage {
@@ -24,7 +24,7 @@ namespace NeGodAndre.Managers.Save.Storage {
 			try {
 				await FileUtils.WriteStringAsync(Path.Combine(SettingPathHelper.GetPath(_settingPath), name + _extension), data);
 			} catch (Exception e) {
-				Debug.LogError(e);
+				LoggerManager.LogError(e);
 			}
 		}
 
@@ -32,7 +32,7 @@ namespace NeGodAndre.Managers.Save.Storage {
 			try {
 				return await FileUtils.ReadStringAsync(Path.Combine(SettingPathHelper.GetPath(_settingPath), name + _extension));
 			} catch ( Exception e ) {
-				Debug.LogError(e);
+				LoggerManager.LogError(e);
 				return string.Empty;
 			}
 		}

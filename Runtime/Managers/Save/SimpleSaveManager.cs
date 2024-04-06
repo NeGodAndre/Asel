@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using NeGodAndre.Cryptography;
+using NeGodAndre.Managers.Logger;
 using NeGodAndre.Managers.Save.Interfaces;
 using NeGodAndre.Utils.Serializer;
-using UnityEngine;
 using VContainer.Unity;
 using VitalRouter;
 
@@ -59,7 +59,7 @@ namespace NeGodAndre.Managers.Save {
 			if ( _saveDataContainer.SaveDatas.TryGetValue(typeof(T), out var saveData) ) {
 				return (T)saveData;
 			}
-			Debug.LogErrorFormat("SaveData type {0} isn't registered", typeof(T));
+			LoggerManager.LogError("SaveData type {0} isn't registered", typeof(T));
 			return default(T);
 		}
 
@@ -72,14 +72,14 @@ namespace NeGodAndre.Managers.Save {
 				try { // precaution against crooked hands
 					rawStrJson = _saveMigration.Migration(rawStrJson);
 				} catch ( Exception e ) {
-					Debug.LogError(e);
+					LoggerManager.LogError(e);
 				}
 			}
 			HelpSaveDatas helpSaveData;
 			try {
 				helpSaveData = JsonSerializer.Deserialize<HelpSaveDatas>(rawStrJson);
 			} catch ( Exception e ) {
-				Debug.LogError(e);
+				LoggerManager.LogError(e);
 				return false;
 			}
 			if ( helpSaveData == null ) {
@@ -91,7 +91,7 @@ namespace NeGodAndre.Managers.Save {
 					_saveDataContainer.SaveDatas[type] = JsonSerializer.Deserialize<ISaveData>(saveData.Value, type);
 				} else {
 					_saveDataContainer.UnusedDatas.Add(saveData.Key, saveData.Value);
-					Debug.LogWarningFormat("Unknown key {0}, value : {1}", saveData.Key, saveData.Value);
+					LoggerManager.LogWarning("Unknown key {0}, value : {1}", saveData.Key, saveData.Value);
 				}
 			}
 			return true;
@@ -121,7 +121,7 @@ namespace NeGodAndre.Managers.Save {
 				var dataForWrite = CryptographyHelper.Encrypt(strJson, _cryptographySetting);
 				await _storage.Write(SAVE_NAME, dataForWrite);
 			} catch ( Exception exception ) {
-				Debug.LogErrorFormat("SaveManager: SaveData saving failed!!! Exception: {0}", exception);
+				LoggerManager.LogError("SaveManager: SaveData saving failed!!! Exception: {0}", exception);
 			}
 		}
 	}

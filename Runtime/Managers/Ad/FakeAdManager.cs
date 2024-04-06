@@ -1,6 +1,7 @@
 ﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 
+using NeGodAndre.Managers.Logger;
 using UnityEngine;
 using VitalRouter;
 
@@ -23,7 +24,7 @@ namespace NeGodAndre.Managers.Ad {
 			if ( !_isWork ) {
 				return;
 			}
-			Debug.Log("Fake Ad Show");
+			LoggerManager.LogInfo("Fake Ad Show");
 			_publisher.PublishAsync(new InterstitialOpenEvent(placement));
 			_publisher.PublishAsync(new InterstitialCompleteEvent(placement, _isWork, false));
 		}
@@ -32,7 +33,7 @@ namespace NeGodAndre.Managers.Ad {
 			if ( !_isWork ) {
 				return;
 			}
-			Debug.Log("Fake Reward Ad Show");
+			LoggerManager.LogInfo("Fake Reward Ad Show");
 			_publisher.PublishAsync(new RewardedOpenEvent(placement));
 			_publisher.PublishAsync(new RewardedCompleteEvent(placement, _isWork, false));
 			_publisher.PublishAsync(new RewardedLoadedEvent());
@@ -42,7 +43,7 @@ namespace NeGodAndre.Managers.Ad {
 			if ( !_isWork ) {
 				return;
 			}
-			Debug.Log("Fake Banner Show");
+			LoggerManager.LogInfo("Fake Banner Show");
 		}
 
 		public void HideBanner() { }
@@ -51,7 +52,7 @@ namespace NeGodAndre.Managers.Ad {
 			if ( !_isWork ) {
 				return;
 			}
-			Debug.Log("Fake MREC Show");}
+			LoggerManager.LogInfo("Fake MREC Show");}
 
 		public void HideMREC() { }
 	}

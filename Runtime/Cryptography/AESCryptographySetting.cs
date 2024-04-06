@@ -3,6 +3,7 @@
 
 using System;
 using System.Security.Cryptography;
+using NeGodAndre.Managers.Logger;
 using UnityEngine;
 
 namespace NeGodAndre.Cryptography {
@@ -21,13 +22,13 @@ namespace NeGodAndre.Cryptography {
 			var ks = aes.LegalKeySizes;
 			var byteKey = Convert.FromBase64String(_key);
 			if ( ((ks[0].MinSize / 8) > byteKey.Length) || (byteKey.Length > (ks[0].MaxSize / 8)) ) {
-				Debug.LogError("AESCryptoSetting: Key have incorrect size!!!");
+				LoggerManager.LogError("AESCryptoSetting: Key have incorrect size!!!");
 			}
 
 			ks = aes.LegalBlockSizes;
 			var byteIV = Convert.FromBase64String(_iv);
 			if ( (ks[0].MinSize / 8) != byteIV.Length ) {
-				Debug.LogError("AESCryptoSetting: IV have incorrect size!!!");
+				LoggerManager.LogError("AESCryptoSetting: IV have incorrect size!!!");
 			}
 		}
 #endif
