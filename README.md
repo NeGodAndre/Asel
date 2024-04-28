@@ -11,3 +11,4 @@ ASEL_DOTWEEN_SUPPORT - доп. ютилиты для DOTween
 | UniTask     | "https://github.com/Cysharp/UniTask.git?path=/src/UniTask/Assets/Plugins/UniTask#v2.5.3"          |
 | VContainer  | "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.15.1"             |
 | VitalRouter | "https://github.com/hadashiA/VitalRouter.git?path=/src/VitalRouter.Unity/Assets/VitalRouter#0.9.0"|
+| ZString     | "https://github.com/Cysharp/ZString.git?path=src/ZString.Unity/Assets/Scripts/ZString#2.6.0"      |

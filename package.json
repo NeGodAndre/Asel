@@ -7,7 +7,8 @@
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "jp.hadashikick.vcontainer": "1.15.3",
     "jp.hadashikick.vitalrouter": "0.9.0",
-    "com.cysharp.unitask": "2.5.3"
+    "com.cysharp.unitask": "2.5.3",
+    "com.cysharp.zstring": "2.6.0"
   },
   "keywords": [],
   "author": {
